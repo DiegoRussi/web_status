@@ -9,7 +9,7 @@ Setup of the project and configuration of the `crontab`:
 1. Access the directory to move the project: `cd /usr/local/bin`
 2. Disable the SSL verification to clone the repository: `git config --global http.sslverify "false"`
 3. Clone the repo.: `git clone https://gitlab.ENV[AUTH_TOKEN].com/diego.russi/ENV[AUTH_TOKEN]_web_status.git`
-4. Access project directory: `cd ENV[AUTH_TOKEN]-web-status-crontab/`
+4. Access project directory: `cd ENV[AUTH_TOKEN]_web_status/`
 5. Install the requirements of the project:
 ```
 sudo apt-get install python3
@@ -21,7 +21,7 @@ pip3 install -r requirements.txt
 	* Access the project scripts dir: `cd /usr/local/bin/ENV[AUTH_TOKEN]_web_status/web_status/`
 	* Get the directory absolute path: `pwd`
  	* Edit the followings scripts path variable `cwd`:
-		* e.g: `cwd = "/usr/local/bin/ENV[AUTH_TOKEN]-web-status-crontab"`
+		* e.g: `cwd = "/usr/local/bin/ENV[AUTH_TOKEN]_web_status"`
 ```
 hourly_job.py
 weekly_job.py
@@ -32,7 +32,7 @@ senders.py
  * Gnuplot Script:
  	* Access the directory: `cd plot/`
  	* Inside the `graph.plot` script in the "filename" line, change the absolute path of the `result.csv` file:
- 		-  `filename = /usr/local/bin/ENV[AUTH_TOKEN]_web_status/ENV[AUTH_TOKEN]-web-status-crontab/plot/result.csv`
+ 		-  `filename = /usr/local/bin/ENV[AUTH_TOKEN]_web_status/plot/result.csv`
 
 #### Crontab config:
  - The `crontab` is meant to run scripts in a cron schedule, in our case, it will
@@ -42,8 +42,8 @@ senders.py
  * Edit the root user `crontab` file: `sudo crontab -e`
  * Insert the line below with the absolute path to the scripts:
 ```
-0 * * * * /usr/bin/python3 -u /usr/local/bin/ENV[AUTH_TOKEN]-web-status-crontab/web_status/hourly_job.py >> /var/log/hourly_status.log 2>&1
-0 8 * * 6  /usr/bin/python3 -u /usr/local/bin/ENV[AUTH_TOKEN]-web-status-crontab/web_status/weekly_job.py >> /var/log/weekly_status.log 2>&1
+0 * * * * /usr/bin/python3 -u /usr/local/bin/ENV[AUTH_TOKEN]_web_status/web_status/hourly_job.py >> /var/log/hourly_status.log 2>&1
+0 8 * * 6  /usr/bin/python3 -u /usr/local/bin/ENV[AUTH_TOKEN]_web_status/web_status/weekly_job.py >> /var/log/weekly_status.log 2>&1
 ```
 
 ### LOGS
