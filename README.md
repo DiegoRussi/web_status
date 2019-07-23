@@ -31,6 +31,7 @@ senders.py
 ```
 
  * Gnuplot Script:
+    * The gnuplot generates the week summary pie-chart via the results retrieved from the statuses.
  	* Access the directory: `cd plot/`
  	* Inside the `graph.plot` script in the "filename" line, change the absolute path of the `result.csv` file:
  		-  `filename = /usr/local/bin/ENV[AUTH_TOKEN]_web_status/plot/result.csv`
