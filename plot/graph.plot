@@ -1,11 +1,11 @@
 #!/usr/local/bin/gnuplot -persist
 
-filename = '/Users/diegomatheus/PycharmProjects/ENV[AUTH_TOKEN]-web-status-crontab/plot/result.csv'
-# Path to crontab:
-# /usr/local/bin/ENV[AUTH_TOKEN]_web_status/ENV[AUTH_TOKEN]-web-status-crontab/plot/result.csv
-#title, result
-#Failtures, 234
-#Success, 2321
+# Path to plot data result.csv:
+filename = '/usr/local/bin/ENV[AUTH_TOKEN]_web_status/plot/result.csv'
+# result.csv
+#	title, result
+#	Failtures, 123
+#	Success, 1234
 
 rowi = 1
 rowf = 7

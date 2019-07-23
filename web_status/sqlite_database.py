@@ -1,15 +1,11 @@
 # Stlib
 import os
-import subprocess
-
-# Third-party
 import sqlite3
 
 ''' Current Working Directory '''
 # cwd = os.getcwd()
-cwd = "/Users/diegomatheus/PycharmProjects/ENV[AUTH_TOKEN]-web-status-crontab/"
 # Work Dir. path to crontab
-# cwd = "/usr/local/bin/ENV[AUTH_TOKEN]_web_status"
+cwd = "/usr/local/bin/ENV[AUTH_TOKEN]_web_status"
 
 ''' sqlite Database Path'''
 db_path = cwd + "/reports.db"
@@ -40,7 +36,7 @@ def insert_entry(url, status_code, status):
 	cursor.execute("insert into reports (url, code, status) values (?,?,?)", (url, status_code, status))
 
 	db_conn.commit()
-	print(f'Rows updated {db_conn.total_changes}')
+	print(f'Inserted sqlite entry: {db_conn.total_changes}')
 
 	db_conn.close()
 
@@ -126,7 +122,7 @@ def select_build_report():
 	plot_script = cwd + "/plot/graph.plot"
 	# os.system() - If this command generates any output,
 	# it will be sent to the interpreter standard output stream
-	''' Get the exit status of the executed command ($?) '''
+	''' Execute and then get the exit status ($?) to validate the command '''
 	if os.system(plot_script) != 0:
 		print("The pie-chart plot generation failed !")
 

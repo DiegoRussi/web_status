@@ -2,7 +2,7 @@
 
 # This script must run as a cron job in CRONTAB
 # Run every Saturday at 8AM:
-# 0 * * * * /usr/bin/python3 ...ENV[AUTH_TOKEN]-web-status-crontab/web_status/weekly_job.py
+# 0 * * * * /usr/bin/python3 .../web_status/weekly_job.py
 
 # Stdlib
 from datetime import datetime
@@ -14,9 +14,8 @@ import senders
 
 ''' Current Working Directory'''
 # cwd = os.getcwd()
-cwd = "/Users/diegomatheus/PycharmProjects/ENV[AUTH_TOKEN]-web-status-crontab"
 # Work Dir. path to crontab
-# cwd = "/usr/local/bin/ENV[AUTH_TOKEN]_web_status"
+cwd = "/usr/local/bin/ENV[AUTH_TOKEN]_web_status"
 
 
 def weekly_job():

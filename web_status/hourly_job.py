@@ -2,7 +2,7 @@
 
 # This script must run as a cron job in CRONTAB
 # Run at every hour
-# 0 * * * * /usr/bin/python3 ...ENV[AUTH_TOKEN]-web-status-crontab/web_status/hourly_job.py
+# 0 * * * * /usr/bin/python3 .../web_status/hourly_job.py
 
 # Stdlib
 from datetime import datetime
@@ -18,10 +18,9 @@ import sqlite_database
 import senders
 
 ''' Current Working Directory'''
-# cwd = os.getcwd()
-cwd = "/Users/diegomatheus/PycharmProjects/ENV[AUTH_TOKEN]-web-status-crontab"
+cwd = os.getcwd()
 # Work Dir. path to crontab
-# cwd = "/usr/local/bin/ENV[AUTH_TOKEN]_web_status..."
+# cwd = "/usr/local/bin/ENV[AUTH_TOKEN]_web_status"
 
 
 def hourly_job():
@@ -65,8 +64,7 @@ def hourly_job():
 		status_code = req.status_code
 		if not status_code:
 			status_code = "unreachable"
-			# TODO
-			# IF A FAILURE HAPPEN, MAKE a new request again to confirm that error
+			# TODO: if a failure happen, make a new request again to confirm that error
 
 		url_status = "Success" if status_code == 200 else "Failure"
 
@@ -104,14 +102,13 @@ def hourly_job():
 
 	if not status_code:
 		status_code = "unreachable"
-		# TODO
-		# IF A FAILURE HAPPEN, MAKE a new request again to confirm that error
+		# TODO: if a failure happen, make a new request again to confirm that error
 
 	''' ENV[AUTH_TOKEN] address must return 403 - Forbidden, due to its web access '''
 	url_status = "Success" if status_code == 403 else "Failure"
 
 	report = f'{datetime.now().strftime("%m-%d-%Y %H:%M:%S")} ' \
-		f'{url_svn} {status_code} {url_status}\n'
+		f'{url_svn} {status_code} {url_status}'
 	print(report)
 	''' Insert request data in sqlite database '''
 	sqlite_database.insert_entry(url_svn, status_code, url_status)
