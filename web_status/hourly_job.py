@@ -18,9 +18,9 @@ import sqlite_database
 import senders
 
 ''' Current Working Directory'''
-cwd = os.getcwd()
+# cwd = os.getcwd()
 # Work Dir. path to crontab
-# cwd = "/usr/local/bin/ENV[AUTH_TOKEN]_web_status"
+cwd = "/usr/local/bin/ENV[AUTH_TOKEN]_web_status"
 
 
 def hourly_job():
