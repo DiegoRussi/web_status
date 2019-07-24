@@ -1,31 +1,15 @@
+Email Recipients:
+	After monitoring system confirmed/stable, add Arnaldo, Nestor and Rene N. to week summary email targets
+	* ENV[AUTH_TOKEN].zimmermann@ENV[AUTH_TOKEN].com,ENV[AUTH_TOKEN].melo@ENV[AUTH_TOKEN].com,rene.neumann@ENV[AUTH_TOKEN].com
 
-* status files - weekly report - Partially done
-	* Create file by day, appending every hour the report - DONE
-	* Weekly report: append all the week files into one called week.txt - DONE
-	* Manage the weekly reports, move to lastweek_xyz.txt maintinaing only the lastweek and current - DONE
-	* exclude week files - DONE
+hourly_job.py - lines 67 & 105:
+	TODO: if a failure happen, make a new request again to confirm that error
 
-* send email - if failure in a daily job and in weekly status - DONE
-	- SMTP gmail.com
-	- to enable receive SMTP emails:
-		https://myaccount.google.com/lesssecureapps
-
-	* SLACK webhook to send status - DONE
-		- Send all the reports made to the SLACK CHANNEL - not only failures - DONE
-		- Format slack messages - Green/Red color reports - DONE
-
-* Run script as a linux service - systemd - .init - DONE
-https://stackoverflow.com/questions/1603109/how-to-make-a-python-script-run-like-a-service-or-daemon-in-linux
-
-Approach - CRONTAB the jobs scripts
-
-every Saturday at 8AM - cron job:
-0 8 * * 6 /usr/bin/python3 /path/to/script/weekly_job.py
-
-every hour - cron job:
-0 * * * * /usr/bin/python3 /path/to/script/daily_job.py
+sqlite_database.py - lines 52 and on:
+	TODO: sqlite3 default timezone (UTC). Format timestamp to local timezone
+ 	TODO: get uptime since the last FAILURE if not, since first SUCCESS
+	TODO: count checks by url
 
 Extras:
-* Validate web page: selenium webdriver test if necessary
-
-* suggestion: https://hund.io/
+* Validate web pages using selenium webdriver test if necessary
+* Tool suggestion to manage web page statuses and statistics: https://hund.io/
