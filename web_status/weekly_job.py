@@ -15,7 +15,7 @@ import senders
 ''' Current Working Directory'''
 # cwd = os.getcwd()
 # Work Dir. path to crontab
-cwd = "/usr/local/bin/ENV[AUTH_TOKEN]_web_status"
+cwd = "/usr/local/bin/web_status"
 
 
 def weekly_job():

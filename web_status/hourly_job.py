@@ -20,7 +20,7 @@ import senders
 ''' Current Working Directory'''
 # cwd = os.getcwd()
 # Work Dir. path to crontab
-cwd = "/usr/local/bin/ENV[AUTH_TOKEN]_web_status"
+cwd = "/usr/local/bin/web_status"
 
 
 def hourly_job():
@@ -28,7 +28,7 @@ def hourly_job():
 	This function is a Daily Job that must be scheduled to run every hour
 	to check the web pages status and report the status
 
-	The Job is to make requests to the ENV[AUTH_TOKEN] Website and ENV[AUTH_TOKEN] Cloud URLs to get the
+	The Job is to make requests to the Websites and Server URLs to get the
 	status of that page and store in tmp files named after the day of the request
 
 	In case of FAILURE STATUS it must send the current failure report via email
@@ -85,14 +85,14 @@ def hourly_job():
 		with open(file_path, "a+") as tmp:
 			tmp.write(f'{report}\n')
 
-	''' Check ENV[AUTH_TOKEN] server IP address - status code 403 Forbidden - disable verify SSL '''
-	with open(cwd + "/config/url_svn", "r") as conf:
-		url_svn = conf.read()
+	''' Check server IP address - status code 403 Forbidden - disable verify SSL '''
+	with open(cwd + "/config/url_ip", "r") as conf:
+		url_ip = conf.read()
 	status_code = None
-	''' Disable Insecure SSL exception/warning to request the ENV[AUTH_TOKEN] server'''
+	''' Disable Insecure SSL exception/warning to request the server'''
 	urllib3requests.disable_warnings(urllib3requests.exceptions.InsecureRequestWarning)
 	try:
-		req = requests.get(url_svn, headers=headers, verify=False)  # verify (SSL)
+		req = requests.get(url_ip, headers=headers, verify=False)  # verify (SSL)
 		status_code = req.status_code
 	except Exception as e:
 		print(e)
@@ -104,14 +104,14 @@ def hourly_job():
 		status_code = "unreachable"
 		# TODO: if a failure happen, make a new request again to confirm that error
 
-	''' ENV[AUTH_TOKEN] address must return 403 - Forbidden, due to its web access '''
+	''' address must return 403 - Forbidden, due to its web access '''
 	url_status = "Success" if status_code == 403 else "Failure"
 
 	report = f'{datetime.now().strftime("%m-%d-%Y %H:%M:%S")} ' \
-		f'{url_svn} {status_code} {url_status}'
+		f'{url_ip} {status_code} {url_status}'
 	print(report)
 	''' Insert request data in sqlite database '''
-	sqlite_database.insert_entry(url_svn, status_code, url_status)
+	sqlite_database.insert_entry(url_ip, status_code, url_status)
 
 	if url_status == "Failure":
 		senders.send_email(report, subject="Web Status Daily report – Failure")

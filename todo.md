@@ -1,7 +1,3 @@
-Email Recipients:
-	After monitoring system confirmed/stable, add Arnaldo, Nestor and Rene N. to week summary email targets
-	* ENV[AUTH_TOKEN].zimmermann@ENV[AUTH_TOKEN].com,ENV[AUTH_TOKEN].melo@ENV[AUTH_TOKEN].com,rene.neumann@ENV[AUTH_TOKEN].com
-
 hourly_job.py - lines 67 & 105:
 	TODO: if a failure happen, make a new request again to confirm that error
 

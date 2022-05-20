@@ -1,7 +1,7 @@
 #!/usr/local/bin/gnuplot -persist
 
 # Path to plot data result.csv:
-filename = '/usr/local/bin/ENV[AUTH_TOKEN]_web_status/plot/result.csv'
+filename = '/usr/local/bin/web_status/plot/result.csv'
 # result.csv
 #	title, result
 #	Failtures, 123
@@ -12,7 +12,7 @@ rowf = 7
 
 # obtain sum(column(2)) from rows `rowi` to `rowf`
 set term png enhanced font arial 14 tiny size
-set title "ENV[AUTH_TOKEN] Monitoring sites" font ",16"
+set title "Websites Monitoring" font ",16"
 set output "/tmp/pie_chart.png"
 set datafile separator ','
 #stats filename u 2 every ::rowi::rowf noout prefix "A"

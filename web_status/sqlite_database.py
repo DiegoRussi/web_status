@@ -5,7 +5,7 @@ import sqlite3
 ''' Current Working Directory '''
 # cwd = os.getcwd()
 # Work Dir. path to crontab
-cwd = "/usr/local/bin/ENV[AUTH_TOKEN]_web_status"
+cwd = "/usr/local/bin/web_status"
 
 ''' sqlite Database Path'''
 db_path = cwd + "/reports.db"
@@ -58,13 +58,13 @@ def select_build_report():
 	# WHERE DATE(timestamp) = (
 	#     SELECT MIN(DATE(timestamp)) FROM reports
 	# )
-	# AND url LIKE '%ENV[AUTH_TOKEN]%' AND status = 'Failure'
+	# AND url LIKE '%<PATTERN>%' AND status = 'Failure'
 
 	# get oldest
 	# SELECT * FROM reports WHERE DATE(timestamp) = (SELECT MIN(DATE(timestamp)) FROM reports)
 
 	# TODO: count checks by url
-	# SELECT * FROM reports WHERE DATE(timestamp) >= DATE('now', '-7 days') AND url LIKE '%ENV[AUTH_TOKEN]%';
+	# SELECT * FROM reports WHERE DATE(timestamp) >= DATE('now', '-7 days') AND url LIKE '%<PATTERN>%';
 
 	sql_count_lastweek = """SELECT count(*) AS total
 	FROM reports
